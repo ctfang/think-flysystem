@@ -20,9 +20,17 @@ class Files
      */
     public static function disk($fileName='../config/flysystem.php')
     {
-        if( isset(self::$_disk_list) ){
-
+        if( !isset(self::$_disk_list[$fileName]) ){
+            if( !file_exists($fileName) ){
+                $fileName2 = CONF_PATH.'/'.$fileName;
+                if( !file_exists($fileName) ){
+                    die($fileName.' 文件系统配置-不存在');
+                }
+                $fileName = $fileName2;
+            }
+            self::$_disk_list[$fileName] = new FilesDist(require_once $fileName);
         }
+        return self::$_disk_list[$fileName];
     }
 
     /**

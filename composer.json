@@ -1,0 +1,37 @@
+{
+    "name": "topthink/think",
+    "description": "The flysystem extension for the thinkphp framework",
+    "type": "think-extension",
+    "keywords": [
+        "thinkphp",
+        "flysystem",
+        "filesystem",
+        "files",
+        "aws",
+        "s3",
+        "azure",
+        "copy.com",
+        "dropbox",
+        "ftp",
+        "gridfs",
+        "rackspace",
+        "sftp",
+        "webdav"
+    ],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "selden1992",
+            "email": "2206582181@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "league/flysystem": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Think\\flysystem\\": "src"
+        }
+    }
+}

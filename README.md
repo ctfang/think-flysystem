@@ -92,3 +92,61 @@ class Index
 
 ```
 
+alias目录别名的作用在于快捷更换目录，例如开发阶段，log_alias指向root/log/下，部署阶段更改为 ../../log/
+
+## 其他使用方法和flysystem一致
+
+API
+一般用法
+
+写文件
+
+Files::write('path/to/file.txt', 'contents');
+更新文件
+
+Files::update('path/to/file.txt', 'new contents');
+写或更新文件
+
+Files::put('path/to/file.txt', 'contents');
+读取文件
+
+$contents = Files::read('path/to/file.txt');
+检查文件是否存在
+
+$exists = Files::has('path/to/file.txt');
+注意：这只对文件而不是目录具有一致的行为。在Flysystem中，目录不太重要，它们是隐式创建的，常常被忽略，因为不是每个适配器（文件系统类型）都支持目录。
+
+删除文件
+
+Files::delete('path/to/file.txt');
+读取和删除
+
+$contents = Files::readAndDelete('path/to/file.txt');
+重命名文件
+
+Files::rename('filename.txt', 'newname.txt');
+复制文件
+
+Files::copy('filename.txt', 'duplicate.txt');
+获取Mimetypes
+
+$mimetype = Files::getMimetype('path/to/file.txt');
+获取时间戳
+
+$timestamp = Files::getTimestamp('path/to/file.txt');
+获取文件大小
+
+$size = Files::getSize('path/to/file.txt');
+创建目录
+
+Files::createDir('path/to/nested/directory');
+当写入更深的路径时，也隐含地指定了目录
+
+Files::write('path/to/file.txt', 'contents');
+删除目录
+
+Files::deleteDir('path/to/directory');
+上述方法将递归删除目录
+
+注意：Flysystem API使用的所有路径都是相对于适配器根目录的。
+

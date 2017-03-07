@@ -81,18 +81,20 @@ class Index
         // 普通写入
         Files::put('log/test.log',time());
         // 目录别名写入
-        Files::alias('log_alias')->put('test.log',time());
+        Files::alias('log_alias')->put('test2.log',time());
+        // 指定驱动
+        Files::disk('local')->put('test3.log',time());
 
         // 普通读取
-        Files::read('log/test.log');
+        echo Files::read('log/test.log');
         // 目录别名读取
-        Files::alias('log_alias')->read('read.log');
+        echo Files::alias('log_alias')->read('test2.log');
     }
 }
 
 ```
 
-alias目录别名的作用在于快捷更换目录，例如开发阶段，log_alias指向root/log/下，部署阶段更改为 ../../log/
+alias目录别名的作用在于快捷更换目录，例如开发阶段，log_alias指向root/log/下，部署阶段更改为 web/log/
 
 ## 其他使用方法和flysystem一致
 

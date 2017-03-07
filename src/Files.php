@@ -23,15 +23,12 @@ class Files
      * 驱动选择
      *
      * @param string $diskType
-     * @return
+     * @return Container
      */
     public static function disk($diskType)
     {
-        if( !isset(self::$_disk_list[$diskType]) ){
-            $config = Config::getConfig($diskType);
-            self::$_disk_list[$diskType] = new Container(new FilesDist($config));
-        }
-        return self::$_disk_list[$diskType];
+        $config = Config::getConfig($diskType);
+        return new Container(new FilesDist($config));
     }
 
     /**

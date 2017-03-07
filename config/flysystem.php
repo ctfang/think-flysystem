@@ -27,7 +27,7 @@ return [
         ],
         // 目录别名
         'alias'=>[
-            'image'=>'image/test/s',
+            'image'=>'image/user/',
         ],
     ],
 ];

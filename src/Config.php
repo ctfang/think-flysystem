@@ -37,6 +37,17 @@ class Config
     }
 
     /**
+     * 默认驱动配置
+     */
+    public static function defaultDisk()
+    {
+        if( !isset(self::$config) ){
+            self::$config = include self::filePath();
+        }
+        return self::$config['default'];
+    }
+
+    /**
      * 获取默认配置地址
      *
      * @return string

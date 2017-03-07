@@ -13,14 +13,49 @@ use League\Flysystem\Filesystem;
 
 class FilesDist
 {
+    public $config;
     private $filesystem;
 
     public function __construct(array $config)
     {
-        $adapter = new $config['adapter_class']();
-        $adapter = $adapter->makeDisk($config);
-        $filesystem = new Filesystem($adapter);
+        $this->config   = $config;
+        $adapter        = new $config['adapter_class']();
+        $adapter        = $adapter->makeDisk($config);
+        $filesystem     = new Filesystem($adapter);
         $this->filesystem = $filesystem;
+    }
+
+    /**
+     * 写文件
+     *
+     * @param $arrParameter
+     */
+    public function write($arrParameter)
+    {
+        list($file,$contents) = $arrParameter;
+        $this->filesystem->write($file,$contents);
+    }
+
+    /**
+     * 更新文件
+     *
+     * @param $arrParameter
+     */
+    public function update($arrParameter)
+    {
+        list($file,$contents) = $arrParameter;
+        $this->filesystem->update($file,$contents);
+    }
+
+    /**
+     * 写或更新文件
+     *
+     * @param $arrParameter
+     */
+    public function put($arrParameter)
+    {
+        list($file,$contents) = $arrParameter;
+        $this->filesystem->put($file,$contents);
     }
 
     /**
@@ -36,30 +71,6 @@ class FilesDist
     }
 
     /**
-     * 写或更新文件
-     *
-     * @param $arrParameter
-     * @return bool|false|string
-     */
-    public function put($arrParameter)
-    {
-        list($file,$contents) = $arrParameter;
-        return $this->filesystem->put($file,$contents);
-    }
-
-    /**
-     * 写文件
-     *
-     * @param $arrParameter
-     * @return bool
-     */
-    public function write($arrParameter)
-    {
-        list($file,$contents) = $arrParameter;
-        return $this->filesystem->write($file,$contents);
-    }
-
-    /**
      * 检查文件是否存在
      *
      * @param $arrParameter
@@ -72,6 +83,86 @@ class FilesDist
     }
 
     /**
+     * 删除文件
+     *
+     * @param $arrParameter
+     */
+    public function delete($arrParameter)
+    {
+        list($path) = $arrParameter;
+        $this->filesystem->delete($path);
+    }
+
+    /**
+     * 读取和删除
+     *
+     * @param $arrParameter
+     * @return bool|false|string
+     */
+    public function readAndDelete($arrParameter)
+    {
+        list($path) = $arrParameter;
+        return $this->filesystem->readAndDelete($path);
+    }
+
+    /**
+     * 重命名
+     *
+     * @param $arrParameter
+     */
+    public function rename($arrParameter)
+    {
+        list($path) = $arrParameter;
+        $this->filesystem->rename($path);
+    }
+
+    /**
+     * 复制文件
+     *
+     * @param $arrParameter
+     */
+    public function copy($arrParameter)
+    {
+        list($path,$toPath) = $arrParameter;
+        $this->filesystem->copy($path,$toPath);
+    }
+
+    /**
+     * 获取Mimetypes
+     *
+     * @param $arrParameter
+     * @return bool|false|string
+     */
+    public function getMimetype($arrParameter)
+    {
+        list($path) = $arrParameter;
+        return $this->filesystem->getMimetype($path);
+    }
+
+    /**
+     * 获取文件大小
+     *
+     * @param $arrParameter
+     * @return bool|false|int
+     */
+    public function getSize($arrParameter)
+    {
+        list($path) = $arrParameter;
+        return $this->filesystem->getSize($path);
+    }
+
+    /**
+     * 创建目录
+     *
+     * @param $arrParameter
+     */
+    public function createDir($arrParameter)
+    {
+        list($path) = $arrParameter;
+        $this->filesystem->createDir($path);
+    }
+
+    /**
      * 递归删除目录
      *
      * @param $arrParameter
@@ -80,6 +171,7 @@ class FilesDist
     public function deleteDir($arrParameter)
     {
         list($path) = $arrParameter;
-        return $this->filesystem->deleteDir($path);
+        $this->filesystem->deleteDir($path);
     }
+
 }

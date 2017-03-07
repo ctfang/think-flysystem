@@ -9,7 +9,6 @@
 namespace Think\flysystem;
 
 
-use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
 
 class FilesDist
@@ -18,16 +17,8 @@ class FilesDist
 
     public function __construct(array $config)
     {
-        $adapter = new Local('/runtime/', LOCK_EX, Local::DISALLOW_LINKS, [
-            'file' => [
-                'public' => 0744,
-                'private' => 0700,
-            ],
-            'dir' => [
-                'public' => 0755,
-                'private' => 0700,
-            ]
-        ]);
+        $adapter = $config['adapter_class'];
+        $adapter = $adapter->makeDisk($config);
         $filesystem = new Filesystem($adapter);
         $this->filesystem = $filesystem;
     }

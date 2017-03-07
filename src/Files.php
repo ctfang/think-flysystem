@@ -12,13 +12,19 @@ namespace Think\flysystem;
 class Files
 {
 
+    /**
+     * 驱动列表
+     *
+     * @var
+     */
     private static $_disk_list;
+
     /**
      * 驱动选择
      *
      * @param string $fileName
      */
-    public static function disk($fileName='../config/flysystem.php')
+    public static function disk($fileName)
     {
         if( !isset(self::$_disk_list[$fileName]) ){
             if( !file_exists($fileName) ){

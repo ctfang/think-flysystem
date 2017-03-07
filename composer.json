@@ -1,5 +1,5 @@
 {
-    "name": "selden1992/flysystem",
+    "name": "selden1992/tp-flysystem",
     "description": "The flysystem extension for the thinkphp framework",
     "type": "think-extension",
     "keywords": [

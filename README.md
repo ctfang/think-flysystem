@@ -25,7 +25,7 @@ to the `require` section of your `composer.json` file.
 ## 配置
 
 
-复制 /Users/cyz/web/tp5/vendor/selden1992/think-flysystem/config/flysystem.php 到 CONF_PATH.'extra/flysystem.php'
+复制 /vendor/selden1992/think-flysystem/config/flysystem.php 到 CONF_PATH.'extra/flysystem.php'
 
 ```php
 

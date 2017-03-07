@@ -9,7 +9,8 @@ return [
 
     'local'=>[
         'adapter_class'=>\Think\flysystem\adapter\Local::class,
-        [
+        'root'=>'./files/',
+        'permissions'=>[
             'file' => [
                 'public' => 0744,
                 'private' => 0700,

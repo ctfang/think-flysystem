@@ -7,9 +7,8 @@
  */
 
 namespace Think\flysystem\adapter;
+use Think\flysystem\inter\AdapterInterface;
 
-
-use Think\flysystem\AdapterInterface;
 
 /**
  * 本地配置驱动
@@ -20,17 +19,6 @@ class Local implements AdapterInterface
 {
 
     /**
-     * 对配置信息处理
-     *
-     * @param array $arr
-     * @return mixed
-     */
-    public function setConfig(array $arr)
-    {
-        // TODO: Implement setConfig() method.
-    }
-
-    /**
      * 生产Filesystem对象
      *
      * @param array $arr
@@ -38,6 +26,20 @@ class Local implements AdapterInterface
      */
     public function makeDisk(array $arr)
     {
-        // TODO: Implement makeDisk() method.
+        if ( !is_dir($arr['root']) ){
+            mkdir($arr['root'],0777,true);
+            is_dir($arr['root']) or die($arr['root'].'不能写');
+        }
+        $adapter = new \League\Flysystem\Adapter\Local($arr['root'], LOCK_EX, \League\Flysystem\Adapter\Local::DISALLOW_LINKS, [
+            'file' => [
+                'public' => 0744,
+                'private' => 0700,
+            ],
+            'dir' => [
+                'public' => 0755,
+                'private' => 0700,
+            ]
+        ]);
+        return $adapter;
     }
 }

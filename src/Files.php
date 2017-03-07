@@ -22,21 +22,15 @@ class Files
     /**
      * 驱动选择
      *
-     * @param string $fileName
+     * @param string $diskType
      */
-    public static function disk($fileName)
+    public static function disk($diskType)
     {
-        if( !isset(self::$_disk_list[$fileName]) ){
-            if( !file_exists($fileName) ){
-                $fileName2 = CONF_PATH.'/'.$fileName;
-                if( !file_exists($fileName) ){
-                    die($fileName.' 文件系统配置-不存在');
-                }
-                $fileName = $fileName2;
-            }
-            self::$_disk_list[$fileName] = new FilesDist(require_once $fileName);
+        if( !isset(self::$_disk_list[$diskType]) ){
+            $config = Config::getConfig($diskType);
+            self::$_disk_list[$diskType] = new FilesDist($config);
         }
-        return self::$_disk_list[$fileName];
+        return self::$_disk_list[$diskType];
     }
 
     /**
@@ -48,6 +42,6 @@ class Files
      */
     public static function __callStatic($name, $arguments)
     {
-        return self::disk()->$name($arguments);
+        return self::disk('local')->$name($arguments);
     }
 }

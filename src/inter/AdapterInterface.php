@@ -6,19 +6,11 @@
  * Time: 上午9:26
  */
 
-namespace Think\flysystem;
+namespace Think\flysystem\inter;
 
 
 interface AdapterInterface
 {
-    /**
-     * 对配置信息处理
-     *
-     * @param array $arr
-     * @return mixed
-     */
-    public function setConfig(array $arr);
-
     /**
      * 生产Filesystem对象
      *

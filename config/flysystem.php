@@ -30,4 +30,43 @@ return [
             'image'=>'image/user/',
         ],
     ],
+    // ftp 扩展
+    'ftp'=>[
+        'adapter_class'=>\Think\flysystem\adapter\Ftp::class,
+        // 权限参数
+        'permissions'=>[
+            'host' => 'ftp.example.com',
+            'username' => 'username',
+            'password' => 'password',
+
+            /** optional config settings */
+            'port' => 21,
+            'root' => '/path/to/root',
+            'passive' => true,
+            'ssl' => true,
+            'timeout' => 30,
+        ],
+        // 目录别名
+        'alias'=>[
+            'image'=>'image/user/',
+        ],
+    ],
+    // sftp 扩展
+    'ftp'=>[
+        'adapter_class'=>\Think\flysystem\adapter\Sftp::class,
+        // 权限参数
+        'permissions'=>[
+            'host' => 'example.com',
+            'port' => 21,
+            'username' => 'username',
+            'password' => 'password',
+            'privateKey' => 'path/to/or/contents/of/privatekey',
+            'root' => '/path/to/root',
+            'timeout' => 10,
+        ],
+        // 目录别名
+        'alias'=>[
+            'image'=>'image/user/',
+        ],
+    ],
 ];

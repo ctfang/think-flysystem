@@ -140,6 +140,17 @@ class FilesDist
     }
 
     /**
+     * 时间戳
+     * @param $arrParameter
+     * @return bool|false|string
+     */
+    public function getTimestamp($arrParameter)
+    {
+        list($path) = $arrParameter;
+        return $this->filesystem->getMimetype($path);
+    }
+
+    /**
      * 获取文件大小
      *
      * @param $arrParameter

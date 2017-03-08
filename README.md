@@ -89,6 +89,20 @@ class Index
         echo Files::read('log/test.log');
         // 目录别名读取
         echo Files::alias('log_alias')->read('test2.log');
+
+
+        /**
+         * ftp 操作
+         */
+        Files::disk('ftp')->put('log/test4.log',time());
+        echo Files::disk('ftp')->alias('log_alias')->read('test4.log');
+
+        /**
+         * sftp 操作
+         * 需要按 composer require league/flysystem-sftp
+         */
+        Files::disk('sftp')->put('log/test4.log',time());
+        echo Files::disk('sftp')->alias('log_alias')->read('test4.log');
     }
 }
 
@@ -102,52 +116,68 @@ API
 一般用法
 
 写文件
-
+```php
 Files::write('path/to/file.txt', 'contents');
+```
+
 更新文件
-
+```php
 Files::update('path/to/file.txt', 'new contents');
+```
 写或更新文件
-
+```php
 Files::put('path/to/file.txt', 'contents');
+```
 读取文件
-
+```php
 $contents = Files::read('path/to/file.txt');
+```
 检查文件是否存在
-
+```php
 $exists = Files::has('path/to/file.txt');
+```
 注意：这只对文件而不是目录具有一致的行为。在Flysystem中，目录不太重要，它们是隐式创建的，常常被忽略，因为不是每个适配器（文件系统类型）都支持目录。
 
 删除文件
-
+```php
 Files::delete('path/to/file.txt');
+```
 读取和删除
-
+```php
 $contents = Files::readAndDelete('path/to/file.txt');
+```
 重命名文件
-
+```php
 Files::rename('filename.txt', 'newname.txt');
+```
 复制文件
-
+```php
 Files::copy('filename.txt', 'duplicate.txt');
+```
 获取Mimetypes
-
+```php
 $mimetype = Files::getMimetype('path/to/file.txt');
+```
 获取时间戳
-
+```php
 $timestamp = Files::getTimestamp('path/to/file.txt');
+```
 获取文件大小
-
+```php
 $size = Files::getSize('path/to/file.txt');
+```
 创建目录
-
+```php
 Files::createDir('path/to/nested/directory');
+```
 当写入更深的路径时，也隐含地指定了目录
-
+```php
 Files::write('path/to/file.txt', 'contents');
+```
 删除目录
-
+```php
 Files::deleteDir('path/to/directory');
+```
 上述方法将递归删除目录
 
 注意：Flysystem API使用的所有路径都是相对于适配器根目录的。

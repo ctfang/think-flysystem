@@ -1,6 +1,6 @@
 {
     "name": "selden1992/think-flysystem",
-    "description": "The flysystem extension for the thinkphp framework",
+    "description": "thinkphp 集成的文件系统，本地存储，第三发存储提供一致的API",
     "type": "think-extension",
     "keywords": [
         "thinkphp",

@@ -28,160 +28,151 @@ class FilesDist
     /**
      * 写文件
      *
-     * @param $arrParameter
+     * @param $file
+     * @param $contents
      */
-    public function write($arrParameter)
+    public function write($file,$contents)
     {
-        list($file,$contents) = $arrParameter;
         $this->filesystem->write($file,$contents);
     }
 
     /**
      * 更新文件
      *
-     * @param $arrParameter
+     * @param $file
+     * @param $contents
      */
-    public function update($arrParameter)
+    public function update($file,$contents)
     {
-        list($file,$contents) = $arrParameter;
         $this->filesystem->update($file,$contents);
     }
 
     /**
      * 写或更新文件
      *
-     * @param $arrParameter
+     * @param $file
+     * @param $contents
      */
-    public function put($arrParameter)
+    public function put($file,$contents)
     {
-        list($file,$contents) = $arrParameter;
         $this->filesystem->put($file,$contents);
     }
 
     /**
      * 获取文件内容
      *
-     * @param $arrParameter
+     * @param $file
      * @return bool|false|string
      */
-    public function read($arrParameter)
+    public function read($file)
     {
-        list($file) = $arrParameter;
         return $this->filesystem->read($file);
     }
 
     /**
      * 检查文件是否存在
      *
-     * @param $arrParameter
+     * @param $file
      * @return bool
      */
-    public function has($arrParameter)
+    public function has($file)
     {
-        list($file) = $arrParameter;
         return $this->filesystem->has($file);
     }
 
     /**
      * 删除文件
      *
-     * @param $arrParameter
+     * @param $path
      */
-    public function delete($arrParameter)
+    public function delete($path)
     {
-        list($path) = $arrParameter;
         $this->filesystem->delete($path);
     }
 
     /**
      * 读取和删除
      *
-     * @param $arrParameter
+     * @param $path
      * @return bool|false|string
      */
-    public function readAndDelete($arrParameter)
+    public function readAndDelete($path)
     {
-        list($path) = $arrParameter;
         return $this->filesystem->readAndDelete($path);
     }
 
     /**
      * 重命名
      *
-     * @param $arrParameter
+     * @param $path
      */
-    public function rename($arrParameter)
+    public function rename($path)
     {
-        list($path) = $arrParameter;
         $this->filesystem->rename($path);
     }
 
     /**
      * 复制文件
      *
-     * @param $arrParameter
+     * @param $path
+     * @param $toPath
      */
-    public function copy($arrParameter)
+    public function copy($path,$toPath)
     {
-        list($path,$toPath) = $arrParameter;
         $this->filesystem->copy($path,$toPath);
     }
 
     /**
      * 获取Mimetypes
      *
-     * @param $arrParameter
+     * @param $path
      * @return bool|false|string
      */
-    public function getMimetype($arrParameter)
+    public function getMimetype($path)
     {
-        list($path) = $arrParameter;
         return $this->filesystem->getMimetype($path);
     }
 
     /**
      * 时间戳
-     * @param $arrParameter
+     * @param $path
      * @return bool|false|string
      */
-    public function getTimestamp($arrParameter)
+    public function getTimestamp($path)
     {
-        list($path) = $arrParameter;
         return $this->filesystem->getMimetype($path);
     }
 
     /**
      * 获取文件大小
      *
-     * @param $arrParameter
+     * @param $path
      * @return bool|false|int
      */
-    public function getSize($arrParameter)
+    public function getSize($path)
     {
-        list($path) = $arrParameter;
         return $this->filesystem->getSize($path);
     }
 
     /**
      * 创建目录
      *
-     * @param $arrParameter
+     * @param $path
+     * @internal param $arrParameter
      */
-    public function createDir($arrParameter)
+    public function createDir($path)
     {
-        list($path) = $arrParameter;
         $this->filesystem->createDir($path);
     }
 
     /**
      * 递归删除目录
      *
-     * @param $arrParameter
+     * @param $path
      * @return bool
      */
-    public function deleteDir($arrParameter)
+    public function deleteDir($path)
     {
-        list($path) = $arrParameter;
         $this->filesystem->deleteDir($path);
     }
 

@@ -29,13 +29,10 @@ class Container
      */
     public function __call($name, $arguments)
     {
-        if(count($arguments)==1 && is_array($arguments[0])){
-            $arguments = $arguments[0];
-        }
         if($this->alias){
             $arguments[0] = $this->alias.$arguments[0];
         }
-        return $this->FilesDist->$name($arguments);
+        return call_user_func_array(array($this->FilesDist, $name), $arguments);
     }
 
     /**
@@ -47,7 +44,7 @@ class Container
     public function alias($name)
     {
         $config = $this->FilesDist->config;
-        if($config['alias'][$name]){
+        if(isset($config['alias'][$name])){
             $this->alias = $config['alias'][$name];
         }else{
             $this->alias = $name;

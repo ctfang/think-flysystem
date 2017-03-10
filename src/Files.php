@@ -11,14 +11,6 @@ namespace Think\flysystem;
 
 class Files
 {
-
-    /**
-     * 驱动列表
-     *
-     * @var
-     */
-    private static $_disk_list;
-
     /**
      * 驱动选择
      *
@@ -40,17 +32,17 @@ class Files
      */
     public static function __callStatic($name, $arguments)
     {
-        return self::disk( Config::defaultDisk() )->$name($arguments);
+        return call_user_func_array(array(self::disk( Config::defaultDisk() ), $name), $arguments);
     }
 
     /**
      * 目录别名
      *
-     * @param $arguments
+     * @param $dirName
      * @return mixed
      */
-    public static function alias($arguments)
+    public static function alias($dirName)
     {
-        return self::disk( Config::defaultDisk() )->alias($arguments);
+        return self::disk( Config::defaultDisk() )->alias($dirName);
     }
 }

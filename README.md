@@ -80,7 +80,7 @@ return [
         ],
     ],
     // sftp 扩展
-    'ftp'=>[
+    'sftp'=>[
         'adapter_class'=>\Think\flysystem\adapter\Sftp::class,
         // 权限参数
         'permissions'=>[
@@ -126,8 +126,15 @@ class Index
         echo Files::read('log/test.log');
         // 目录别名读取
         echo Files::alias('log_alias')->read('test2.log');
-
-
+        
+        // 复制
+        Files::copy('log/test.log','log/image1.log');
+        // 第二参数路径使用别名
+        Files::copy('log/test.log',['alias'=>'local','path'=>'image1.log']);
+        
+        // 获取别名真实路径
+        echo Files::getAliasPath('image');  
+                
         /**
          * ftp 操作
          */

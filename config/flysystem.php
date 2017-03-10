@@ -52,7 +52,7 @@ return [
         ],
     ],
     // sftp 扩展
-    'ftp'=>[
+    'sftp'=>[
         'adapter_class'=>\Think\flysystem\adapter\Sftp::class,
         // 权限参数
         'permissions'=>[

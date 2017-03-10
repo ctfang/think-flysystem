@@ -34,15 +34,4 @@ class Files
     {
         return call_user_func_array(array(self::disk( Config::defaultDisk() ), $name), $arguments);
     }
-
-    /**
-     * 目录别名
-     *
-     * @param $dirName
-     * @return mixed
-     */
-    public static function alias($dirName)
-    {
-        return self::disk( Config::defaultDisk() )->alias($dirName);
-    }
 }

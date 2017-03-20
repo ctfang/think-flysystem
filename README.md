@@ -100,6 +100,10 @@ return [
 ];
 
 ```
+如果ftp提示不能写，可以设置一个777权限的目录调试是否权限影响到
+```php
+putenv(‘TMPDIR=/Users/cyz/web/test’);
+```
 
 ## 普通使用
 

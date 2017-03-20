@@ -5,6 +5,8 @@
  * Date: 2017/3/6
  * Time: 下午6:42
  */
+// 设置缓存目录,如果ftp提示不能写，可以设置一个777权限的目录调试是否权限影响到
+// putenv(‘TMPDIR=/Users/cyz/web/test’);
 return [
 
     // 默认驱动
